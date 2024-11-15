@@ -41,9 +41,7 @@ export const ExpenseSchema = z.object({
 
 
 export const CreateBudgetSchema = z.object({
-    name: z.string(),
-    amount: z.number().refine((value) => !isNaN(value), {
-        message: "Amount must be a valid number"
-    }),
+    name: z.string().min(3, "Budget name is required"),
+    amount: z.coerce.number().min(1, "Amount must be a positive number"),
     userId: z.string()
 })

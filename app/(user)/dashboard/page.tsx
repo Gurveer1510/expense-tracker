@@ -1,16 +1,15 @@
 import BudgetCard from "@/components/budget/BudgetCard"
 import CreateBudget from "@/components/budget/CreateBudget"
+import { SessionProvider } from "next-auth/react"
 
-const page = () => {
-
+const page = async () => {
     return (
-
-        <div className="w-screen p-4 flex flex-col ">
-            <BudgetCard />
-            <CreateBudget />
-        </div>
-
-
+        <SessionProvider>
+            <div className="w-screen p-4 flex flex-col ">
+                <BudgetCard />
+                <CreateBudget />
+            </div>
+        </SessionProvider>
     )
 }
 

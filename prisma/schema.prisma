@@ -28,7 +28,7 @@ model User {
 
 model Budget {
   id        String    @id @default(cuid())
-  name      String
+  name      String    @unique
   userId    String
   amount    Float
   createdAt DateTime  @default(now())
