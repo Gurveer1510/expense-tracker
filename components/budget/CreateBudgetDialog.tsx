@@ -38,7 +38,7 @@ export const CreateBudgetDialog= () => {
     const [errors, setErrors] = useState("")
     const [open, setOpen] = useState(false)
     const router = useRouter()
-    const { data: session, status } = useSession()
+    const { data: session } = useSession()
 
     const form = useForm<z.infer<typeof CreateBudgetSchema>>({
         resolver: zodResolver(CreateBudgetSchema),
