@@ -19,11 +19,12 @@ const LogOutButton = ()  => {
 
     return (
         <Button
-        className="bg-transparent cursor-pointer hover:bg-white"
+            // variant={'outline'}
+            className="bg-transparent cursor-pointer hover:bg-white outline outline-1 " 
             onClick={clickHandler}
             asChild
         >
-            <p className="text-red-600 hover:text-red-500 font-semibold">Log Out</p>
+            <p className="text-red-600 font-semibold">Log Out</p>
         </Button>
     )
 }

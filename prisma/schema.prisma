@@ -31,6 +31,7 @@ model Budget {
   name      String    @unique
   userId    String
   amount    Float
+  left      Float     @default(0)
   createdAt DateTime  @default(now())
   user      User      @relation(fields: [userId], references: [id])
   expenses  Expense[]
@@ -41,6 +42,7 @@ model Expense {
   description String
   amount      Float
   date        DateTime @default(now())
+  tag         String
   budget      Budget   @relation(fields: [budgetId], references: [id])
   budgetId    String
 }

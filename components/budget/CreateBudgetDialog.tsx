@@ -70,8 +70,10 @@ export const CreateBudgetDialog= () => {
             } else if (response?.success) {
                 setSuccess(response.success);
                 setOpen(false)
-                router.push('/dashboard')
+                router.refresh()
             }
+            setSuccess("")
+            setErrors("")
         });
     };
     return (

@@ -28,7 +28,8 @@ export const BudgetCardSchema = z.object({
     }),
     amount: z.number({
         message: "Amount can't be empty."
-    })
+    }),
+    left: z.number().optional()
 })
 
 export const ExpenseSchema = z.object({
