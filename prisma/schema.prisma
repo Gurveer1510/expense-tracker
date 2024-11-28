@@ -31,7 +31,7 @@ model Budget {
   name      String    @unique
   userId    String
   amount    Float
-  left      Float     @default(0)
+  spent      Float     @default(0)
   createdAt DateTime  @default(now())
   user      User      @relation(fields: [userId], references: [id])
   expenses  Expense[]

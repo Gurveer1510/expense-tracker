@@ -29,6 +29,7 @@ import { useState, useTransition } from "react";
 import { createBudget } from "@/actions/createBudget";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { PlusCircle } from "lucide-react"
 
 
 export const CreateBudgetDialog= () => {
@@ -79,8 +80,8 @@ export const CreateBudgetDialog= () => {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button className="text-black" variant="outline">
-                    Create new Budget
+                <Button className="text-black sm:w-96 " variant="outline">
+                    <PlusCircle/>Create new Budget
                 </Button>
             </DialogTrigger>
             <DialogContent>

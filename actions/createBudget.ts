@@ -20,7 +20,7 @@ export const createBudget = async ({name, amount, userId } : z.infer<typeof Crea
                 name: name,
                 amount: amount,
                 userId: userId,
-                left: amount
+                spent: 0
             }
         })
         return {

@@ -1,44 +1,47 @@
 "use client"
 
 import Link from "next/link"
-import {
-    Card,
-    CardHeader,
-    CardContent,
-    CardFooter
-} from "@/components/ui/card"
+
 import { Progress } from "@/components/ui/progress"
 import { BudgetCardType } from "@/types"
+import { Wallet } from "lucide-react"
 
 const BudgetCardWrapper: React.FC<BudgetCardType> = ({
     id,
     name,
     amount,
-    left
+    spent
 }) => {
 
+    const progressPercentage = (spent || 0 / amount) * 100
     return (
         <Link
-        className="h-fit"
+            className="h-fit"
             href={`/budget/${id}`}
         >
-            <Card
-                className=" sm:w-[450px] h-[110px] sm:h-[123px] bg-black text-white flex flex-col -space-y-3 border border-white " 
-                >
-                <CardHeader className="p:1 sm:p-6  ">
-                    <p className="text-xl sm:text-3xl font-semibold ">{name}</p>
-                </CardHeader>
-                <CardContent className="h-fit">
-                    <Progress indicatorClassName="bg-green-500 " max={amount} value={left} />
-                    <p className="text-sm float-right ">₹{amount} left</p>
-                    <CardFooter className="pl-0 pt-4 text-white text-xs z-10 ">
-                    click to see expenses
-                </CardFooter>
-                </CardContent>
-                
-            </Card>
+            <div key={id} className="flex items-center bg-gray-900 px-4 py-2 rounded-lg">
+                <div className="bg-gray-700 p-2 rounded-full mr-4">
+                    <Wallet />
+                </div>
+                <div className="flex-1">
 
-        </Link>
+                    <p className="text-xl text-white font-semibold leading-none mb-1">{name}</p>
+                    <p className="text-sm text-gray-400">
+                        ${spent} / ${amount}
+                    </p>
+                </div>
+                <div className="w-[60%] ml-4">
+                    <Progress
+                        value={progressPercentage}
+                        className="h-2 bg-gray-700"
+                        indicatorClassName={`bg-gradient-to-r ${progressPercentage < 50 ? 'from-green-500 to-green-600' :
+                            progressPercentage < 80 ? 'from-yellow-500 to-yellow-600' :
+                                'from-red-500 to-red-600'
+                            }`}
+                    />
+                </div>
+            </div>
+        </Link >
     )
 }
 

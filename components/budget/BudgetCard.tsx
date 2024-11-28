@@ -1,20 +1,44 @@
 
 import { getAllBudgets } from "@/data/getBudgets"
+import {
+    Card,
+    CardHeader,
+    CardContent,
+    CardFooter,
+    CardTitle,
+    CardDescription
+} from "@/components/ui/card"
 import BudgetCardWrapper from "@/components/budget/BudgetCardWrapper"
+import CreateBudget from "./CreateBudget"
 
 
 const BudgetCard = async () => {
     const budgets = await getAllBudgets()
     return (
-        <div className="p-4 pt-2 flex flex-col gap-2 ">
-            <p className="sm:font-bold mb-2 font-semibold sm:text-4xl text-xl">{budgets.length > 0 ? "Recently Created " : "You haven't created any "}<span className="text-green-500">Budgets</span></p>
-            <div className="h-fit flex flex-col sm:flex-row flex-wrap gap-2 ">
-                {
-                    budgets && budgets.map((budget) => (
-                        <BudgetCardWrapper key={budget.id} amount={budget.amount} id={budget.id} name={budget.name} left={budget.left} />
-                    ))
-                }
-            </div>
+        <div className="px-4 pt-2 flex flex-col">
+            <Card className="col-span-full bg-black border-gray-700">
+                <CardHeader>
+                    <CardTitle className="text-xl text-gray-100">Your recent budgets</CardTitle>
+                    <CardDescription className="text-gray-400">Overview of your budget categories</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    {
+                        budgets.map((budget) => (
+                            <div className="flex flex-col my-2">
+                                <BudgetCardWrapper
+                                amount={budget.amount}
+                                id={budget.id}
+                                name={budget.name}
+                                spent={budget.spent}
+                            />
+                            </div>
+                        ))
+                    }
+                </CardContent>
+                <CardFooter className="flex justify-center">
+                    <CreateBudget/>
+                </CardFooter>
+            </Card>
         </div>
     )
 }
